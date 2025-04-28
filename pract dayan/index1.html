@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoGebra AR - Proyecto</title>
+    <!-- AR.js y A-Frame (para realidad aumentada) -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <!-- API de GeoGebra -->
+    <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        #ar-container { width: 100%; height: 100vh; position: relative; }
+        #equation-input { 
+            position: absolute; 
+            top: 10px; 
+            left: 10px; 
+            z-index: 100; 
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- Interfaz para ingresar ecuaciones -->
+    <div id="equation-input">
+        <input type="text" id="equation" placeholder="Ejemplo: x^2" value="x^2">
+        <button onclick="updateEquation()">Graficar en AR</button>
+    </div>
+
+    <!-- Contenedor de AR.js -->
+    <div id="ar-container">
+        <a-scene embedded arjs="detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+            <!-- Marcador "Hiro" (patrón: https://jeromeetienne.github.io/AR.js/data/images/HIRO.jpg) -->
+            <a-marker preset="hiro" id="hiro-marker">
+                <!-- Gráfico 3D de la ecuación -->
+                <a-entity id="equation-3d" position="0 0 0" scale="0.5 0.5 0.5">
+                    <a-text id="equation-text" value="f(x) = x^2" color="blue" align="center"></a-text>
+                </a-entity>
+            </a-marker>
+            <a-entity camera></a-entity>
+        </a-scene>
+    </div>
+
+    <!-- GeoGebra (oculto, solo para procesamiento) -->
+    <div id="ggb-container" style="display: none;"></div>
+
+    <script>
+        // 1. Inicializar GeoGebra (oculto)
+        var ggbApp = new GGBApplet({
+            "appName": "graphing",
+            "width": 0,
+            "height": 0,
+            "showToolBar": false,
+            "showAlgebraInput": false
+        }, "ggb-container");
+        ggbApp.inject();
+
+        // 2. Función para actualizar la ecuación en AR y GeoGebra
+        function updateEquation() {
+            const equation = document.getElementById("equation").value;
+            
+            // Graficar en GeoGebra (procesamiento oculto)
+            ggbApp.evalCommand(`f(x) = ${equation}`);
+            
+            // Mostrar en AR
+            document.getElementById("equation-text").setAttribute("value", `f(x) = ${equation}`);
+            console.log("Ecuación actualizada:", equation);
+        }
+
+        // 3. Actualizar automáticamente al detectar el marcador
+        document.querySelector("#hiro-marker").addEventListener("markerFound", () => {
+            updateEquation();
+        });
+    </script>
+</body>
+</html>
