@@ -15,15 +15,22 @@
       vr-mode-ui="enabled: true"
       arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;">
 
-      <!-- Cubo colocado en posición fija en el espacio -->
-      <a-box 
-        position="0 0 0"
-        depth="1" 
-        height="1" 
-        width="1"
-        color="#FFD700" material="metalness: 1; roughness: 0.2;"
+      <!-- Entidad contenedora del cubo -->
+      <a-entity position="0 0 -8">
+        <!-- Caras individuales del cubo -->
+        <a-box 
+          depth="1" height="1" width="1"
+          material="color: #ffffff; metalness: 0.8; roughness: 0.2; side: double;"
         >
-      </a-box>
+          <!-- Colores por cara -->
+          <a-mixin id="red" material="color: #ff4c4c"></a-mixin> <!-- Rojo claro -->
+          <a-mixin id="blue" material="color: #4caeff"></a-mixin> <!-- Azul claro -->
+          <a-mixin id="orange" material="color: #ff9933"></a-mixin> <!-- Naranja claro -->
+          <a-mixin id="white" material="color: #ffffff"></a-mixin> <!-- Blanco -->
+          <a-mixin id="lightgreen" material="color: #90ee90"></a-mixin> <!-- Verde claro -->
+          <a-mixin id="yellow" material="color: #ffff99"></a-mixin> <!-- Amarillo claro -->
+        </a-box>
+      </a-entity>
 
       <!-- Cámara -->
       <a-entity camera></a-entity>
