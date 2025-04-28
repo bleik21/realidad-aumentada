@@ -3,33 +3,27 @@
   <head>
     <title>Cubo Giratorio en AR</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
     <style>
       body { margin: 0; overflow: hidden; }
       a-scene { width: 100%; height: 100%; }
     </style>
   </head>
   <body>
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;">
+    <a-scene
+      embedded
+      vr-mode-ui="enabled: true"
+      arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;">
 
-      <!-- Cubo giratorio con colores distintos en cada cara -->
-      <a-box position="0 0 -3" 
-             rotation="0 0 0"
-             width="1" height="1" depth="1">
-        <!-- Cara 1: Rojo -->
-        <a-plane position="0 0.5 0" rotation="0 0 0" width="1" height="1" color="#FF0000"></a-plane>
-        <!-- Cara 2: Verde -->
-        <a-plane position="0 -0.5 0" rotation="180 0 0" width="1" height="1" color="#00FF00"></a-plane>
-        <!-- Cara 3: Azul -->
-        <a-plane position="0 0 0.5" rotation="90 0 0" width="1" height="1" color="#0000FF"></a-plane>
-        <!-- Cara 4: Amarillo -->
-        <a-plane position="0 0 -0.5" rotation="-90 0 0" width="1" height="1" color="#FFFF00"></a-plane>
-        <!-- Cara 5: Naranja -->
-        <a-plane position="0.5 0 0" rotation="0 90 0" width="1" height="1" color="#FFA500"></a-plane>
-        <!-- Cara 6: Blanco -->
-        <a-plane position="-0.5 0 0" rotation="0 -90 0" width="1" height="1" color="#FFFFFF"></a-plane>
-        <a-animation attribute="rotation" to="360 360 360" dur="10000" repeat="indefinite"></a-animation>
-      </a-box>
+      <!-- Cubo girando a 3 metros digitales -->
+      <a-box 
+        position="0 0 -3"
+        depth="1" height="1" width="1"
+        color="#4caeff"
+        metalness="0.7"
+        roughness="0.2"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+      ></a-box>
 
       <!-- Cámara -->
       <a-entity camera></a-entity>
