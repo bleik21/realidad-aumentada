@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cubo AR con 5 caras</title>
+    <!-- Librerías AR (A-Frame + AR.js) -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        /* Estilo para el marcador perdido */
+        .arjs-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black; color: white; display: flex; justify-content: center; align-items: center; }
+    </style>
+</head>
+<body>
+    <!-- Mensaje de carga -->
+    <div class="arjs-loader">
+        <p>Cargando realidad aumentada... Enfoca el marcador Hiro</p>
+    </div>
+
+    <!-- Escena AR -->
+    <a-scene embedded arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3;">
+        <!-- Marcador Hiro (patrón: https://jeromeetienne.github.io/AR.js/data/images/HIRO.jpg) -->
+        <a-marker preset="hiro">
+            <!-- Cubo con 5 caras visibles -->
+            <a-box 
+                position="0 0.5 0" 
+                width="1" 
+                height="1" 
+                depth="1"
+                material="
+                    color: #FF5733; 
+                    opacity: 0.9;
+                    metalness: 0.5;
+                    roughness: 0.1;
+                ">
+                <!-- Cara frontal (roja) -->
+                <a-plane 
+                    position="0 0 0.501" 
+                    width="1" 
+                    height="1" 
+                    rotation="0 0 0" 
+                    material="color: #FF0000; side: double">
+                </a-plane>
+                <!-- Cara derecha (verde) -->
+                <a-plane 
+                    position="0.501 0 0" 
+                    width="1" 
+                    height="1" 
+                    rotation="0 90 0" 
+                    material="color: #00FF00; side: double">
+                </a-plane>
+                <!-- Cara izquierda (azul) -->
+                <a-plane 
+                    position="-0.501 0 0" 
+                    width="1" 
+                    height="1" 
+                    rotation="0 -90 0" 
+                    material="color: #0000FF; side: double">
+                </a-plane>
+                <!-- Cara superior (amarilla) -->
+                <a-plane 
+                    position="0 0.501 0" 
+                    width="1" 
+                    height="1" 
+                    rotation="-90 0 0" 
+                    material="color: #FFFF00; side: double">
+                </a-plane>
+                <!-- Cara inferior (morada) -->
+                <a-plane 
+                    position="0 -0.501 0" 
+                    width="1" 
+                    height="1" 
+                    rotation="90 0 0" 
+                    material="color: #AA00FF; side: double">
+                </a-plane>
+            </a-box>
+        </a-marker>
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <script>
+        // Ocultar mensaje de carga cuando AR esté listo
+        document.querySelector('a-scene').addEventListener('loaded', function() {
+            document.querySelector('.arjs-loader').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
