@@ -1,49 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cubo Metálico - Realidad Aumentada</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.min.js"></script>
+    <title>Cubo en Realidad Aumentada</title>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
+    <style>
+      body { margin: 0; overflow: hidden; }
+      a-scene { width: 100%; height: 100%; }
+    </style>
   </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false">
-      
-      <!-- Luz para que brille -->
-      <a-entity light="type: ambient; color: #ffffff; intensity: 0.5"></a-entity>
-      <a-entity light="type: directional; color: #ffffff; intensity: 1" position="0 1 1"></a-entity>
+  <body>
+    <a-scene
+      embedded
+      vr-mode-ui="enabled: true"
+      arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;">
 
-      <!-- Cámara fija -->
-      <a-camera position="0 0 0" look-controls-enabled="false"></a-camera>
+      <!-- Cubo colocado en posición fija en el espacio -->
+      <a-box 
+        position="0 0 0"
+        depth="1" 
+        height="1" 
+        width="1"
+        color="#FFD700" material="metalness: 1; roughness: 0.2;"
+        >
+      </a-box>
 
-      <!-- Cubo metálico -->
-      <a-entity id="cubo" position="0 0 -5" rotation="0 45 0">
-
-        <!-- Frente (Rojo Metálico) -->
-        <a-plane position="0 0.5 0.5" rotation="0 0 0" width="1" height="1"
-          material="color: red; metalness: 0.8; roughness: 0.2;"></a-plane>
-
-        <!-- Atrás (Azul Metálico) -->
-        <a-plane position="0 0.5 -0.5" rotation="0 180 0" width="1" height="1"
-          material="color: blue; metalness: 0.8; roughness: 0.2;"></a-plane>
-
-        <!-- Derecha (Verde Metálico) -->
-        <a-plane position="0.5 0.5 0" rotation="0 90 0" width="1" height="1"
-          material="color: green; metalness: 0.8; roughness: 0.2;"></a-plane>
-
-        <!-- Izquierda (Amarillo Metálico) -->
-        <a-plane position="-0.5 0.5 0" rotation="0 -90 0" width="1" height="1"
-          material="color: yellow; metalness: 0.8; roughness: 0.2;"></a-plane>
-
-        <!-- Arriba (Morado Metálico) -->
-        <a-plane position="0 1 0" rotation="-90 0 0" width="1" height="1"
-          material="color: purple; metalness: 0.8; roughness: 0.2;"></a-plane>
-
-        <!-- Abajo (Naranja Metálico) -->
-        <a-plane position="0 0 0" rotation="90 0 0" width="1" height="1"
-          material="color: orange; metalness: 0.8; roughness: 0.2;"></a-plane>
-
-      </a-entity>
-
+      <!-- Cámara -->
+      <a-entity camera></a-entity>
     </a-scene>
   </body>
 </html>
