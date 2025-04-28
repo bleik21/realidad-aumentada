@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Realidad Aumentada sin marcador</title>
+    <title>Realidad Aumentada sin marcador - Cubo mejorado</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.min.js"></script>
   </head>
@@ -11,14 +11,29 @@
       <!-- Cámara -->
       <a-camera position="0 0 0" look-controls-enabled="false"></a-camera>
       
-      <!-- Cubo flotante -->
-      <a-box 
-        position="0 0 -3" 
-        rotation="0 45 0" 
-        color="#4CC3D9" 
-        depth="1" height="1" width="1" 
-        animation="property: rotation; to: 0 405 0; loop: true; dur: 4000">
-      </a-box>
+      <!-- Cubo más lejos y con 6 caras -->
+      <a-entity position="0 0 -8"> <!-- MÁS LEJOS: -8 unidades -->
+        <!-- Cada cara será un plano -->
+        
+        <!-- Frente -->
+        <a-plane position="0 0.5 0.5" rotation="0 0 0" width="1" height="1" color="#FF0000"></a-plane>
+        
+        <!-- Atrás -->
+        <a-plane position="0 0.5 -0.5" rotation="0 180 0" width="1" height="1" color="#00FF00"></a-plane>
+        
+        <!-- Derecha -->
+        <a-plane position="0.5 0.5 0" rotation="0 90 0" width="1" height="1" color="#0000FF"></a-plane>
+        
+        <!-- Izquierda -->
+        <a-plane position="-0.5 0.5 0" rotation="0 -90 0" width="1" height="1" color="#FFFF00"></a-plane>
+        
+        <!-- Arriba -->
+        <a-plane position="0 1 0" rotation="-90 0 0" width="1" height="1" color="#FF00FF"></a-plane>
+        
+        <!-- Abajo -->
+        <a-plane position="0 0 0" rotation="90 0 0" width="1" height="1" color="#00FFFF"></a-plane>
+        
+      </a-entity>
       
     </a-scene>
   </body>
