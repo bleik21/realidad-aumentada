@@ -1,37 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Realidad Aumentada - Cubo Estático con Texturas</title>
+    <title>Cubo Metálico - Realidad Aumentada</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/AR.js/aframe/build/aframe-ar.min.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+    <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;" vr-mode-ui="enabled: false">
       
-      <!-- Cámara -->
+      <!-- Luz para que brille -->
+      <a-entity light="type: ambient; color: #ffffff; intensity: 0.5"></a-entity>
+      <a-entity light="type: directional; color: #ffffff; intensity: 1" position="0 1 1"></a-entity>
+
+      <!-- Cámara fija -->
       <a-camera position="0 0 0" look-controls-enabled="false"></a-camera>
 
-      <!-- Cubo estático con texturas -->
+      <!-- Cubo metálico -->
       <a-entity id="cubo" position="0 0 -5" rotation="0 45 0">
-        
-        <!-- Frente -->
-        <a-plane position="0 0.5 0.5" rotation="0 0 0" width="1" height="1" src="https://cdn.jsdelivr.net/gh/bryanraffin/cubefaces/front.png"></a-plane>
-        
-        <!-- Atrás -->
-        <a-plane position="0 0.5 -0.5" rotation="0 180 0" width="1" height="1" src="https://cdn.jsdelivr.net/gh/bryanraffin/cubefaces/back.png"></a-plane>
-        
-        <!-- Derecha -->
-        <a-plane position="0.5 0.5 0" rotation="0 90 0" width="1" height="1" src="https://cdn.jsdelivr.net/gh/bryanraffin/cubefaces/right.png"></a-plane>
-        
-        <!-- Izquierda -->
-        <a-plane position="-0.5 0.5 0" rotation="0 -90 0" width="1" height="1" src="https://cdn.jsdelivr.net/gh/bryanraffin/cubefaces/left.png"></a-plane>
-        
-        <!-- Arriba -->
-        <a-plane position="0 1 0" rotation="-90 0 0" width="1" height="1" src="https://cdn.jsdelivr.net/gh/bryanraffin/cubefaces/top.png"></a-plane>
-        
-        <!-- Abajo -->
-        <a-plane position="0 0 0" rotation="90 0 0" width="1" height="1" src="https://cdn.jsdelivr.net/gh/bryanraffin/cubefaces/bottom.png"></a-plane>
-        
+
+        <!-- Frente (Rojo Metálico) -->
+        <a-plane position="0 0.5 0.5" rotation="0 0 0" width="1" height="1"
+          material="color: red; metalness: 0.8; roughness: 0.2;"></a-plane>
+
+        <!-- Atrás (Azul Metálico) -->
+        <a-plane position="0 0.5 -0.5" rotation="0 180 0" width="1" height="1"
+          material="color: blue; metalness: 0.8; roughness: 0.2;"></a-plane>
+
+        <!-- Derecha (Verde Metálico) -->
+        <a-plane position="0.5 0.5 0" rotation="0 90 0" width="1" height="1"
+          material="color: green; metalness: 0.8; roughness: 0.2;"></a-plane>
+
+        <!-- Izquierda (Amarillo Metálico) -->
+        <a-plane position="-0.5 0.5 0" rotation="0 -90 0" width="1" height="1"
+          material="color: yellow; metalness: 0.8; roughness: 0.2;"></a-plane>
+
+        <!-- Arriba (Morado Metálico) -->
+        <a-plane position="0 1 0" rotation="-90 0 0" width="1" height="1"
+          material="color: purple; metalness: 0.8; roughness: 0.2;"></a-plane>
+
+        <!-- Abajo (Naranja Metálico) -->
+        <a-plane position="0 0 0" rotation="90 0 0" width="1" height="1"
+          material="color: orange; metalness: 0.8; roughness: 0.2;"></a-plane>
+
       </a-entity>
 
     </a-scene>
