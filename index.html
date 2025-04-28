@@ -15,18 +15,19 @@
       vr-mode-ui="enabled: true"
       arjs="sourceType: webcam; debugUIEnabled: false; trackingMethod: best;">
 
-      <!-- Cubo girando a 3 metros digitales -->
+      <!-- Cubo girando en todas las direcciones -->
       <a-box 
         position="0 0 -3"
         depth="1" height="1" width="1"
         color="#4caeff"
         metalness="0.7"
         roughness="0.2"
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
+        animation="property: rotation; to: 360 360 360; loop: true; dur: 5000"
       ></a-box>
 
-      <!-- Cámara -->
+      <!-- Cámara que activa la realidad aumentada -->
       <a-entity camera></a-entity>
+
     </a-scene>
   </body>
 </html>
